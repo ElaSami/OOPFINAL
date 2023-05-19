@@ -7,18 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+// Enumération pour le régime alimentaire des animaux
 enum RegimeAlimentaire {
     HERBIVORE,
     CARNIVORE,
     OMNIVORE
 }
 
+// Enumération pour la taille des enclos
 enum TailleEnclos {
     PETIT,
     MOYEN,
     GRAND
 }
 
+// Enumération pour les espèces d'animaux
 enum EspeceAnimal {
     TIGRE,
     LION,
@@ -42,6 +45,7 @@ enum EspeceAnimal {
     PONEY
 }
 
+// Classe Animal
 class Animal {
     private String nom;
     private Employe employeResponsable;
@@ -49,6 +53,7 @@ class Animal {
     private TailleEnclos tailleEnclos;
     private RegimeAlimentaire regimeAlimentaire;
 
+    // Constructeur de la classe Animal
     public Animal(String nom, EspeceAnimal espece) {
         this.nom = nom;
         this.espece = espece;
@@ -57,90 +62,112 @@ class Animal {
         this.regimeAlimentaire = null;
     }
 
+    // Méthode pour obtenir le nom de l'animal
     public String getNom() {
         return nom;
     }
 
+    // Méthode pour définir le nom de l'animal
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    // Méthode pour obtenir l'employé responsable de l'animal
     public Employe getEmployeResponsable() {
         return employeResponsable;
     }
 
+    // Méthode pour définir l'employé responsable de l'animal
     public void setEmployeResponsable(Employe employeResponsable) {
         this.employeResponsable = employeResponsable;
     }
 
+    // Méthode pour obtenir l'espèce de l'animal
     public EspeceAnimal getEspece() {
         return espece;
     }
 
+    // Méthode pour définir l'espèce de l'animal
     public void setEspece(EspeceAnimal espece) {
         this.espece = espece;
     }
 
+    // Méthode pour obtenir la taille de l'enclos de l'animal
     public TailleEnclos getTailleEnclos() {
         return tailleEnclos;
     }
 
+    // Méthode pour définir la taille de l'enclos de l'animal
     public void setTailleEnclos(TailleEnclos tailleEnclos) {
         this.tailleEnclos = tailleEnclos;
     }
 
+    // Méthode pour obtenir le régime alimentaire de l'animal
     public RegimeAlimentaire getRegimeAlimentaire() {
         return regimeAlimentaire;
     }
 
+    // Méthode pour définir le régime alimentaire de l'animal
     public void setRegimeAlimentaire(RegimeAlimentaire regimeAlimentaire) {
         this.regimeAlimentaire = regimeAlimentaire;
     }
 }
 
+// Classe Employe
 class Employe {
     private int badge;
     private String nom;
 
+    // Constructeur de la classe Employe
     public Employe(int badge, String nom) {
         this.badge = badge;
         this.nom = nom;
     }
 
+    // Méthode pour obtenir le badge de l'employé
     public int getBadge() {
         return badge;
     }
 
+    // Méthode pour définir le badge de l'employé
     public void setBadge(int badge) {
         this.badge = badge;
     }
 
+    // Méthode pour obtenir le nom de l'employé
     public String getNom() {
         return nom;
     }
 
+    // Méthode pour définir le nom de l'employé
     public void setNom(String nom) {
         this.nom = nom;
     }
 }
 
+// Classe Inventaire
 class Inventaire {
     private String aliment;
 
+    // Constructeur de la classe Inventaire
     public Inventaire(String aliment) {
         this.aliment = aliment;
     }
 
+    // Méthode pour obtenir l'aliment
     public String getAliment() {
         return aliment;
     }
 
+    // Méthode pour définir l'aliment
     public void setAliment(String aliment) {
         this.aliment = aliment;
     }
 }
 
+// Classe utilitaire pour la validation
 class ValidationUtil {
+    // Méthode pour valider si une chaîne peut être convertie en entier
     public static boolean isValidInt(String value) {
         try {
             Integer.parseInt(value);
@@ -151,7 +178,9 @@ class ValidationUtil {
     }
 }
 
+// Classe utilitaire pour les menus
 class MenuUtil {
+    // Méthode pour afficher le menu principal
     public static void afficherMenuPrincipal() {
         System.out.println("1. Ajouter un animal");
         System.out.println("2. Afficher tous les animaux de chaque enclos");
@@ -171,6 +200,7 @@ class MenuUtil {
         System.out.println("16. Quitter");
     }
 
+    // Méthode pour afficher le menu de modification d'un animal
     public static void afficherMenuModifierAnimal() {
         System.out.println("1. Modifier le nom");
         System.out.println("2. Modifier l'espèce");
@@ -178,12 +208,14 @@ class MenuUtil {
         System.out.println("4. Modifier le régime alimentaire");
     }
 
+    // Méthode pour afficher le menu des types d'enclos
     public static void afficherMenuTypesEnclos() {
         System.out.println("1. Petit");
         System.out.println("2. Moyen");
         System.out.println("3. Grand");
     }
 
+    // Méthode pour afficher le menu du régime alimentaire
     public static void afficherMenuRegimeAlimentaire() {
         System.out.println("1. Herbivore");
         System.out.println("2. Carnivore");
@@ -191,6 +223,7 @@ class MenuUtil {
     }
 }
 
+// Classe principale du zoo
 public class ZooDeGaspe {
     private List<Animal> animaux;
     private List<Employe> employes;
@@ -199,6 +232,7 @@ public class ZooDeGaspe {
     private List<String> employesChargees;
     private List<String> alimentsChargees;
 
+    // Constructeur de la classe ZooDeGaspe
     public ZooDeGaspe() {
         animaux = new ArrayList<>();
         employes = new ArrayList<>();
@@ -208,6 +242,7 @@ public class ZooDeGaspe {
         alimentsChargees = new ArrayList<>();
     }
 
+    // Méthode pour ajouter un animal au zoo
     public void ajouterAnimal(String nom, TailleEnclos tailleEnclos, RegimeAlimentaire regimeAlimentaire) {
         EspeceAnimal espece = obtenirEspeceAnimal();
         if (espece != null) {
@@ -221,6 +256,7 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode privée pour obtenir l'espèce de l'animal à partir de l'entrée utilisateur
     private EspeceAnimal obtenirEspeceAnimal() {
         Scanner scanner = new Scanner(System.in);
         MenuUtil.afficherMenuTypesEnclos();
@@ -234,6 +270,7 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour afficher tous les animaux du zoo
     public void afficherAnimaux() {
         for (Animal animal : animaux) {
             System.out.println("Nom : " + animal.getNom());
@@ -244,12 +281,14 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour ajouter un employé au zoo
     public void ajouterEmploye(int badge, String nom) {
         Employe employe = new Employe(badge, nom);
         employes.add(employe);
         System.out.println("L'employé " + nom + " a été ajouté.");
     }
 
+    // Méthode pour afficher tous les employés du zoo
     public void afficherEmployes() {
         for (Employe employe : employes) {
             System.out.println("Badge : " + employe.getBadge());
@@ -258,12 +297,14 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour ajouter un aliment à l'inventaire du zoo
     public void ajouterAliment(String aliment) {
         Inventaire inventaire = new Inventaire(aliment);
         this.inventaire.add(inventaire);
         System.out.println("L'aliment " + aliment + " a été ajouté à l'inventaire.");
     }
 
+    // Méthode pour afficher l'inventaire du zoo
     public void afficherInventaire() {
         for (Inventaire inventaire : this.inventaire) {
             System.out.println("Aliment : " + inventaire.getAliment());
@@ -271,6 +312,7 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour assigner un employé à un animal
     public void assignerEmployeAnimal(String animalNom, int employeBadge) {
         Animal animal = trouverAnimalParNom(animalNom);
         Employe employe = trouverEmployeParBadge(employeBadge);
@@ -283,6 +325,7 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode privée pour trouver un animal par son nom
     private Animal trouverAnimalParNom(String nom) {
         for (Animal animal : animaux) {
             if (animal.getNom().equalsIgnoreCase(nom)) {
@@ -292,6 +335,7 @@ public class ZooDeGaspe {
         return null;
     }
 
+    // Méthode privée pour trouver un employé par son badge
     private Employe trouverEmployeParBadge(int badge) {
         for (Employe employe : employes) {
             if (employe.getBadge() == badge) {
@@ -301,6 +345,7 @@ public class ZooDeGaspe {
         return null;
     }
 
+    // Méthode pour modifier les attributs d'un animal
     public void modifierAnimal(String nom) {
         Animal animal = trouverAnimalParNom(nom);
         if (animal != null) {
@@ -358,6 +403,7 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour enregistrer les animaux dans un fichier
     public void enregistrerAnimauxDansFichier(String nomFichier) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier))) {
             for (Animal animal : animaux) {
@@ -370,6 +416,7 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour charger les animaux depuis un fichier
     public void chargerAnimauxDepuisFichier(String nomFichier) {
         File file = new File(nomFichier);
         try (Scanner scanner = new Scanner(file)) {
@@ -394,12 +441,14 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour afficher les données chargées pour les animaux
     public void afficherDonneesChargeesAnimaux() {
         for (String donnee : donneesChargees) {
             System.out.println(donnee);
         }
     }
 
+    // Méthode pour charger les employés depuis un fichier
     public void chargerEmployesDepuisFichier(String nomFichier) {
         File file = new File(nomFichier);
         try (Scanner scanner = new Scanner(file)) {
@@ -420,12 +469,14 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour afficher les données chargées pour les employés
     public void afficherDonneesChargeesEmployes() {
         for (String donnee : employesChargees) {
             System.out.println(donnee);
         }
     }
 
+    // Méthode pour charger les aliments depuis un fichier
     public void chargerAlimentsDepuisFichier(String nomFichier) {
         File file = new File(nomFichier);
         try (Scanner scanner = new Scanner(file)) {
@@ -445,12 +496,14 @@ public class ZooDeGaspe {
         }
     }
 
+    // Méthode pour afficher les données chargées pour les aliments
     public void afficherDonneesChargeesAliments() {
         for (String donnee : alimentsChargees) {
             System.out.println(donnee);
         }
     }
 
+    // Méthode principale du programme
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ZooDeGaspe zoo = new ZooDeGaspe();
